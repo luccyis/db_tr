@@ -28,3 +28,33 @@ ALTER TABLE member MODIFY COLUMN nickname varchar(100);
 -- 컬럼 이름 변경
 ALTER TABLE member CHANGE COLUMN nickname nick varchar(45); 
 
+-- 컬럼 삭제
+ALTER TABLE member drop COLUMN nick;
+
+
+-- row 삭제
+-- DELETE FROM member WHERE seq = 2;
+
+-- commit / rollback 
+
+-- select *from member;
+
+-- 데이터 수정
+-- 여기도 where 를 먼저쓰고 수정사항 입력
+UPDATE member SET 
+	name = "Tony" 
+	, nameENG="Great"
+where seq=1;
+
+INSERT INTO member(
+	Id
+    ,Pw
+    ,name
+    ,nameEng
+    ,nick
+)
+VALUES(
+	"wefdf"
+    
+)
+;
