@@ -225,6 +225,6 @@ VALUE(
     ,3
 )
 ;
-SELECT *FROM tradTheaterPlex;
-    
-    
+SELECT * FROM tradTheaterPlex;
+SELECT * FROM tradTheater;     
+SELECT * FROM tradMovie;

@@ -51,10 +51,77 @@ INSERT INTO member(
     ,Pw
     ,name
     ,nameEng
-    ,nick
 )
 VALUES(
-	"wefdf"
-    
+	"newjeas"
+    ,"sdfdfgoiwr235"
+    ,"장원영"
+    ,"Tony"
 )
+;
+ALTER TABLE member ADD COLUMN nickname varchar(45);
+UPDATE member SET
+	nickname = "woyo"
+Where seq=1
+;
+SELECT *FROM member;
+UPDATE member SET
+	Id = "newjeans"
+where seq = 1;
+
+SELECT
+		Id
+        ,Pw
+        ,Name
+        ,nameEng
+        ,nickname      
+FROM member 
+where seq=1;
+
+-- where
+
+SELECT * FROM member
+WHERE 1=1
+-- AND name like 'TO%'
+-- AND name like '%ny'
+AND name like '%ny%'
+;        
+
+SELECT * FROM member
+WHERE 1=1
+-- AND delNy = 0
+-- AND delNy >1
+-- AND delNy >= 1
+-- AND delNy between 0 and 1
+;
+SELECT * FROM member
+WHERE 1=1 
+-- AND nameEng is null
+AND nameEng = null
+;
+
+SELECT * FROM member;
+
+SELECT * FROM member
+WHERE 1=1
+AND Id like '%je%';
+
+SELECT *FROM tradTheater
+WHERE 1=1
+AND tdthAddress like '%서울%'
+;
+
+SELECT * FROM tradTheaterPlex
+WHERE 1=1
+AND tdpxTotalSeatNum between 0 and 40
+;
+SELECT * FROM tradTheaterPlex
+WHERE 1=1
+AND tdpxPlexName like '%1%'
+AND tradTheater_tdthSeq like '%1%'
+;
+-- 공백 컬럼 찾기. null 값이랑 다름.
+SELECT * FROM member
+WHERE 1=1
+AND nameEng = ""
 ;
