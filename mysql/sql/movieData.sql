@@ -20,4 +20,22 @@ ENGINE = InnoDB
 ;
 SELECT * FROM tradMovie;
 
+CREATE TABLE IF NOT EXISTS `nct127`.`tradTheaterPrice` (
+  `thprSeq` INT NOT NULL AUTO_INCREMENT,
+  `tradTheater_tdthSeq` INT NOT NULL,
+  `thprWeekendNy` TINYINT NULL COMMENT '1. 주중\n2. 주말',
+  `thprMorningNy` TINYINT NULL COMMENT '1. 조조\n2. 일반',
+  `thprAdultNy` TINYINT NULL COMMENT '1.어른\n2. 청소년',
+  `thprPrice` INT NULL COMMENT '티켓가격\n',
+  PRIMARY KEY (`thprSeq`),
+  INDEX `fk_tradTheaterPrice_tradTheater1_idx` (`tradTheater_tdthSeq` ASC) VISIBLE,
+  CONSTRAINT `fk_tradTheaterPrice_tradTheater1`
+    FOREIGN KEY (`tradTheater_tdthSeq`)
+    REFERENCES `nct127`.`tradTheater` (`tdthSeq`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+;
+SELECT * FROM tradTheaterPrice;
 
+SELECT * FROM tradTheater;
