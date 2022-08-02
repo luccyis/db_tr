@@ -39,3 +39,35 @@ ENGINE = InnoDB
 SELECT * FROM tradTheaterPrice;
 
 SELECT * FROM tradTheater;
+
+CREATE TABLE IF NOT EXISTS `nct127`.`tradTimeTable` (
+  `tmtbSeq` INT NOT NULL AUTO_INCREMENT,
+  `tdttShowTime` DATETIME NULL COMMENT '상영시간\n',
+  `tdttMorningNy` TINYINT NULL COMMENT '조조할인\n',
+  `tradTheater_tdthSeq` INT NOT NULL,
+  `tradTheaterPlex_tdpxSeq` INT NOT NULL,
+  `tradMovie_tdmvSeq` INT NOT NULL,
+  PRIMARY KEY (`tmtbSeq`),
+  INDEX `fk_tradTimeTable_tradTheater1_idx` (`tradTheater_tdthSeq` ASC) VISIBLE,
+  INDEX `fk_tradTimeTable_tradTheaterPlex1_idx` (`tradTheaterPlex_tdpxSeq` ASC) VISIBLE,
+  INDEX `fk_tradTimeTable_tradMovie1_idx` (`tradMovie_tdmvSeq` ASC) VISIBLE,
+  CONSTRAINT `fk_tradTimeTable_tradTheater1`
+    FOREIGN KEY (`tradTheater_tdthSeq`)
+    REFERENCES `nct127`.`tradTheater` (`tdthSeq`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_tradTimeTable_tradTheaterPlex1`
+    FOREIGN KEY (`tradTheaterPlex_tdpxSeq`)
+    REFERENCES `nct127`.`tradTheaterPlex` (`tdpxSeq`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_tradTimeTable_tradMovie1`
+    FOREIGN KEY (`tradMovie_tdmvSeq`)
+    REFERENCES `nct127`.`tradMovie` (`tdmvSeq`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+;
+
+SELECT * FROM tradTimeTable;
+

@@ -230,3 +230,5 @@ SELECT * FROM tradTheater;
 SELECT * FROM tradMovie;
 SELECT * FROM tradTheaterPrice;
 SELECT * FROM infrMember;
+
+
