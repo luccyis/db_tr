@@ -230,5 +230,29 @@ SELECT * FROM tradTheater;
 SELECT * FROM tradMovie;
 SELECT * FROM tradTheaterPrice;
 SELECT * FROM infrMember;
+SELECT * FROM tradTimeTable;
+
+CREATE TABLE IF NOT EXISTS `nct127`.`tradBooking` (
+  `bkSeq` INT NOT NULL AUTO_INCREMENT,
+  `tdbkPayment` VARCHAR(45) NULL COMMENT '결제수단\n',
+  `tdbkBookingDate` DATETIME NULL COMMENT '예매날짜\n',
+  `tradTimeTable_tmtbSeq` INT NOT NULL,
+  `infrMember_infrMemberSeq` INT NOT NULL,
+  PRIMARY KEY (`bkSeq`),
+  INDEX `fk_tradBooking_tradTimeTable1_idx` (`tradTimeTable_tmtbSeq` ASC) VISIBLE,
+  INDEX `fk_tradBooking_infrMember1_idx` (`infrMember_infrMemberSeq` ASC) VISIBLE,
+  CONSTRAINT `fk_tradBooking_tradTimeTable1`
+    FOREIGN KEY (`tradTimeTable_tmtbSeq`)
+    REFERENCES `nct127`.`tradTimeTable` (`tmtbSeq`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_tradBooking_infrMember1`
+    FOREIGN KEY (`infrMember_infrMemberSeq`)
+    REFERENCES `nct127`.`infrMember` (`infrMemberSeq`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+;
+
 
 

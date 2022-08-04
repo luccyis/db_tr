@@ -42,4 +42,20 @@ left join tradMovie c on c.tdmvSeq = b.tradMovie_tdmvSeq
 -- 극장 목록
 
 -- 결제 페이지
+select 
+	a.tdbkPayment
+    ,b.tdttShowTime
+    ,c.tdthBranch
+    ,d.tdpxPlexName
+    ,e.thprPrice
+    ,f.tdbsRow
+    ,f.tdbsCol
+from tradBooking a
+inner join tradTimeTable b on a.tradTimeTable_tmtbSeq = b.tmtbSeq
+inner join tradTheater c on b.tradTheater_tdthSeq = c.tdthSeq
+left join tradTheaterPlex d on d.tradTheater_tdthSeq = c.tdthSeq
+left join tradTheaterPrice e on e.tradTheater_tdthSeq = c.tdthSeq
+left join tradBookingSeat f on f.tradBooking_bkSeq = a.bkSeq
+;
+
 
