@@ -15,40 +15,57 @@ select * from infrMember;
 select * from infrMember where ifmmId = "dlwlrma" and ifmmPassword = "dkdldbWid"
 ;
 
-
---  영화 먼저
+-- 영화 메인화면 (박스오피스 화면)
 select 
 	a.tdmvMovieTitle
-    ,c.tdthBranch
-    ,b.tdttShowTime
-    ,d.tdpxPlexName
-from tradMovie a 
-inner join tradTimeTable b on a.tdmvSeq = b. tradMovie_tdmvSeq
-inner join tradTheater c on c.tdthSeq = b.tradTheater_tdthSeq
-inner join tradTheaterPlex d on d.tdpxSeq = b.tradTheaterPlex_tdpxSeq 
+    ,a.tdmvLiked
+    ,a.tdmvReleaseDate
+from tradMovie a
 ;
 
 
 
-
-
--- 극장먼저
+-- 빠른 예매 
+-- 극장 먼저
 select 
-	a.tmtbSeq
+	b.tdthRegion
+	,b.tdthBranch
+    ,c.tdmvMovieTitle
     ,a.tdttShowTime
-    b,tdthBranch
-from tradTimeTable a 
-left join tradTheater b on b.tdthSeq = a.tradTheater_tdthSeq
-left join tradMovie c on c.tdmvSeq = a.tradMovie_tdmvSeq
-left join tradTheaterPlex d on d.tdpxSeq = tradTheaterPlex_tdpxSeq
+    ,d.tdpxPlexName
+from tradTimeTable a
+inner join tradTheater b on b.tdthSeq = a.tradTheater_tdthSeq
+inner join tradMovie c on c.tdmvSeq = a.tradMovie_tdmvSeq
+inner join tradTheaterPlex d on d.tdpxSeq = a.tradTheaterPlex_tdpxSeq
 ;
 
-
- 
-
--- 극장 목록
+--  영화 먼저
+select
+	c.tdmvMovieTitle
+    ,b.tdthBranch
+    ,a.tdttShowTime
+from tradTimeTable a
+inner join tradTheater b on b.tdthSeq = a.tradTheater_tdthSeq
+inner join tradMovie c on c.tdmvSeq = a.tradMovie_tdmvSeq
+inner join tradTheaterPlex d on d.tdpxSeq = a.tradTheaterPlex_tdpxSeq
+;
 
 -- 결제 페이지
+
+-- 결제 결과 
+select
+	c.ifmmId
+    ,e.tdpxPlexName
+    ,b.tdbsRow
+    ,b.tdbsCol
+    ,d.tdttShowTime
+from tradBooking a
+inner join tradBookingSeat b on b.tradBooking_tdbkSeq = a.tdbkSeq
+inner join infrMember c on c.infrMemberSeq = a.infrMember_infrMemberSeq
+inner join tradTimeTable d on d.tdttSeq = b.tradTimeTable_tdttSeq
+inner join tradTheaterPlex e on e.tdpxSeq = d.tradTheaterPlex_tdpxSeq
+;
+
 
 
 
