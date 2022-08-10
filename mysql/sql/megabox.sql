@@ -64,8 +64,20 @@ where a.tdmvSeq = 4
  ;
 
 
-
 -- 예매. 영화 먼저
+select
+	a.tdmvMovieTitle
+    ,a.tdmvAge
+    ,c.tdthRegion
+    ,c.tdthBranch
+    ,d.tdpxPlexName
+    ,b.tdttShowTime
+from tradMovie a
+inner join tradTimeTable b on b.tradMovie_tdmvSeq = a. tdmvSeq
+inner join tradTheater c on c.tdthSeq = b.tradTheater_tdthSeq
+inner join tradTheaterPlex d on d.tdpxSeq = b.tradTheaterPlex_tdpxSeq
+where a.tdmvSeq = 1
+;
 
 
 -- 결제 페이지.좌석선택
