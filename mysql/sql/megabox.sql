@@ -26,7 +26,9 @@ select
     ,a.tdmvLiked
     ,a.tdmvReleaseDate
 from tradMovie a
-order by tdmvRank
+order by 
+	a.tdmvRank
+    ,a.tdmvReleaseDate
 ;
 
 -- 영화 상세 페이지
@@ -70,14 +72,23 @@ select
     ,a.tdmvAge
     ,c.tdthRegion
     ,c.tdthBranch
-    ,d.tdpxPlexName
+    ,(select tdpxPlexName from tradTheaterPlex aa where aa.tdpxSeq = b.tradTheaterPlex_tdpxSeq) as plexname
     ,b.tdttShowTime
 from tradMovie a
 inner join tradTimeTable b on b.tradMovie_tdmvSeq = a. tdmvSeq
 inner join tradTheater c on c.tdthSeq = b.tradTheater_tdthSeq
-inner join tradTheaterPlex d on d.tdpxSeq = b.tradTheaterPlex_tdpxSeq
 where a.tdmvSeq = 1
 ;
+
+-- 선호 극장
+select
+	a.ifmmId
+    ,c.tdthBranch
+from infrMember a 
+inner join tradFavoriteTheater b on b.infrMember_ifmmSeq = a.ifmmSeq and b.tdftDefaultNy = 1 
+inner join tradTheater c on c.tdthSeq = b.tradTheater_tdthSeq 
+;
+
 
 
 -- 결제 페이지.좌석선택
