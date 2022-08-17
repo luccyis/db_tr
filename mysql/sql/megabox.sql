@@ -93,8 +93,34 @@ inner join tradTheater c on c.tdthSeq = b.tradTheater_tdthSeq
 
 -- 결제 페이지.좌석선택
 
+-- 결제 후. 예매확인
+select 
+	(select tdthBranch from tradTheater aa where aa.tdthSeq = d.tradTheater_tdthSeq) as branch
+    ,(select tdpxPlexName from tradTheaterPlex bb where bb.tdpxSeq = d.tradTheaterPlex_tdpxSeq) as plexname
+    ,d.tdttShowTime
+	,c.tdbsRow 
+    ,c.tdbsCol
+from tradBooking a
+inner join infrMember b on b.ifmmSeq = a.infrMember_ifmmSeq
+inner join tradBookingSeat c on c.tradBooking_tdbkSeq = a.tdbkSeq
+inner join tradTimeTable d on d.tdttSeq = a.tradTimeTable_tdttSeq
+where b.ifmmId = "mjee08"
+;
+
+--  select 
+-- 	a.tdmvMovieTitle
+--     ,a.tdmvTitleEng
+-- from tradMovie a where 1=1
+
+-- union all
+-- select
+-- 	b.tdmvDirector
+--     ,b.tdmvCast
+-- from  tradMovie b where 1=1
+-- ;
 
 
+ 
 
 
 
