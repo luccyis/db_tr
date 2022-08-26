@@ -89,6 +89,7 @@ inner join tradFavoriteTheater b on b.infrMember_ifmmSeq = a.ifmmSeq and b.tdftD
 inner join tradTheater c on c.tdthSeq = b.tradTheater_tdthSeq 
 ;
 
+-- 결제 하기
 
 
 -- 결제 페이지.좌석선택
