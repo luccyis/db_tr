@@ -3,13 +3,31 @@ use nct127;
 
 -- 공통코드그룹
 select 
-	b.cdSeq
-	,a.cgName
+	a.cgSeq
+    ,a.cgName
+    ,b.cdSeq
+
     ,b.cdName
 from infrCodeGroup a 
 inner join infrCode b on b.infrCodeGroup_cgSeq = a.cgSeq
 ;
 
+SELECT
+	a.*
+    ,(select count(aa.cdName) from infrCode aa where 1=1 and cdDelNy = 0 and aa.infrCodeGroup_cgSeq = a.cgSeq) as count
+FROM infrCodeGroup a
+WHERE 1=1
+	AND cgDelNy = 0
+;
+
+            
+ -- 합 구하기
+ SELECT
+	a.infrCodeGroup_cgSeq
+	,count(cdName)
+ FROM infrCode a 
+group by infrCodeGroup_cgSeq
+;
 
 -- 로그인
 select 
