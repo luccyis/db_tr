@@ -20,6 +20,12 @@ FROM infrCodeGroup a
 WHERE 1=1
 	AND cgDelNy = 0
 ;
+-- 멤버 전체
+SELECT
+	a.*
+FROM infrMember a
+WHERE 1=1
+;
 
 -- 로그인
 select 
