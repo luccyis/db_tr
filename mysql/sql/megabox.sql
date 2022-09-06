@@ -20,6 +20,23 @@ FROM infrCodeGroup a
 WHERE 1=1
 	AND cgDelNy = 0
 ;
+
+-- insert 공통코드 그룹
+INSERT INTO infrCodeGroup (
+	cgName
+    ,cgNameEng
+    ,cgUseNy
+    ,cgDelNy
+)
+VALUES (
+	#{cgName}
+    ,#{cgNameEng}
+    ,1
+    ,0
+)
+;
+
+
 -- 멤버 전체
 SELECT
 	a.*
@@ -68,6 +85,7 @@ select
 from tradMovie a
 where a.tdmvSeq = 4
 ;
+
 
 -- main.무비포스트 
  select 
