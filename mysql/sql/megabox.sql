@@ -44,12 +44,20 @@ FROM infrMember a
 WHERE 1=1
 ;
 
+-- 셀렉트원
+SELECT
+	a.*
+FROM infrCodeGroup a
+WHERE 1=1
+AND  cgSeq = #{shValue}
+;
 -- 로그인
 select 
 	a.ifmmId
     ,a.ifmmName
 from infrMember a
-where a.ifmmId = "dlwlrma" and a.ifmmPassword = "dkdldbWid"
+where 1=1
+AND 	a.ifmmId = "dlwlrma" and a.ifmmPassword = "dkdldbWid"
 ;
 
 -- 영화 메인화면 (박스오피스 화면)
