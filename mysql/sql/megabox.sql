@@ -20,6 +20,11 @@ FROM infrCodeGroup a
 WHERE 1=1
 	AND cgDelNy = 0
 ;
+SELECT COUNT(a.thprSeq)
+FROM tradTheaterPrice a
+JOIN tradTheater b on b.tdthSeq = a.tradTheater_tdthSeq
+;
+
 
 -- insert 공통코드 그룹
 INSERT INTO infrCodeGroup (
