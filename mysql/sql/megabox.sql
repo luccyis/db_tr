@@ -126,16 +126,6 @@ inner join tradTimeTable b on b.tradMovie_tdmvSeq = a. tdmvSeq
 inner join tradTheater c on c.tdthSeq = b.tradTheater_tdthSeq
 where a.tdmvSeq = 1
 ;
-
--- 선호 극장
-select
-	a.ifmmId
-    ,c.tdthBranch
-from infrMember a 
-inner join tradFavoriteTheater b on b.infrMember_ifmmSeq = a.ifmmSeq and b.tdftDefaultNy = 1 
-inner join tradTheater c on c.tdthSeq = b.tradTheater_tdthSeq 
-;
-
 -- 결제 하기
 
 
@@ -166,6 +156,75 @@ where b.ifmmId = "mjee08"
 --     ,b.tdmvCast
 -- from  tradMovie b where 1=1
 -- ;
+
+-- 마이페이지
+
+
+
+-- 마이페이지history
+SELECT 
+	mv.tdmvSeq
+    ,mv.tdmvMovieTitle
+    ,(select tdthBranch from tradTheater th where th.tdthSeq = tt.tradTheater_tdthSeq) as tdthBranch
+    ,(select tdpxPlexName from tradTheaterPlex px where px.tdpxSeq = tt.tradTheaterPlex_tdpxSeq) as tdpxPlexName
+    ,tt.tdttShowTime
+    ,bk.tdbkBookingDate
+FROM infrMember mm
+JOIN tradBooking bk on mm.ifmmSeq = bk.infrMember_ifmmSeq
+JOIN tradBookingSeat bs on bs.tradBooking_tdbkSeq = bk.tdbkSeq
+JOIN tradTimeTable tt on tt.tdttSeq =  bk.tradTimeTable_tdttSeq
+JOIN tradMovie mv on mv.tdmvSeq = tt.tradMovie_tdmvSeq
+WHERE 1=1
+AND mm.ifmmId = "hiii"
+;
+
+-- 마이페이지 메인, 선호 극장
+SELECT
+	(select tdthBranch from tradTheater th where th.tdthSeq = ft.tradTheater_tdthSeq) as tdthBranch
+FROM infrMember mm 
+JOIN tradFavoriteTheater ft on ft.infrMember_ifmmSeq = mm.ifmmSeq 
+WHERE 1=1 
+and mm.ifmmSeq = 2
+;
+
+-- 기본 정보 수정
+INSERT INTO infrMember (
+ifmmEmailAddress
+,ifmmEmailDomain
+,ifmmPhone
+,ifmmDob
+,ifmmDobLoginNy
+,ifmmSnsLogin
+)
+VALUES (
+
+) 
+;
+-- 선택정보 입력
+INSERT INTO infrMember (
+ifmmEmailNy
+,ifmmSmsNy
+)
+VALUES (
+
+)
+;
+-- 선호극장. 배열로.....? 들어감
+INSERT INTO tradFavoriteTheater (
+infrMember_ifmmSeq
+,tradTheater_tdthSeq
+,tdftDefaultNy
+)
+VALUES(
+
+
+)
+;
+
+
+
+
+
 
 
 
