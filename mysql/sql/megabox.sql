@@ -158,10 +158,19 @@ where b.ifmmId = "mjee08"
 -- ;
 
 -- 마이페이지
+SELECT
+    ft.tdftSort
+    ,th.tdthBranch
+FROM infrMember mm
+JOIN tradFavoriteTheater ft on ft.infrMember_ifmmSeq = mm.ifmmSeq
+JOIN tradTheater th on th.tdthSeq = ft.tradTheater_tdthSeq
+WHERE 1=1
+and mm.ifmmSeq = 1
+;
 
 
 
--- 마이페이지history
+-- 마이페이지 history
 SELECT 
 	mv.tdmvSeq
     ,mv.tdmvMovieTitle
@@ -209,11 +218,11 @@ VALUES (
 
 )
 ;
--- 선호극장. 배열로.....? 들어감
+-- 선호극장. for문 돌려서 들어감
 INSERT INTO tradFavoriteTheater (
 infrMember_ifmmSeq
 ,tradTheater_tdthSeq
-,tdftDefaultNy
+,tdftSort
 )
 VALUES(
 
@@ -221,8 +230,19 @@ VALUES(
 )
 ;
 
+-- 셀렉트원 카운트
+SELECT count
+	(ft.tdftSeq)
+FROM infrMember mm
+JOIN tradFavoriteTheater ft on ft.infrMember_ifmmSeq = mm.ifmmSeq
+WHERE 1=1
+and mm.ifmmSeq = 1
+;
 
-
+SELECT count(ft.tdftSeq)
+from tradFavoriteTheater ft
+where infrMember_ifmmSeq = 1
+;
 
 
 
