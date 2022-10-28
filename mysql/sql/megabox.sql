@@ -44,9 +44,24 @@ VALUES (
 
 -- 멤버 전체
 SELECT
-	a.*
+	a.ifmmSeq
+	,a.ifmmId
+	,a.ifmmName
+	,a.ifmmGender
+	,a.ifmmGrade
+	,a.ifmmEmailAddress
+	,a.ifmmEmailDomain
+	,a.ifmmPhone
+	,a.ifmmDob
+	,a.ifmmEmailNy
+	,a.ifmmSmsNy
+	,a.ifmmDobLoginNy
+	,a.ifmmSnsLogin
+	,a.ifmmDelNy
+	,a.ifmmUseNy
 FROM infrMember a
 WHERE 1=1
+ORDER BY a.ifmmSeq desc
 ;
 
 -- 셀렉트원
@@ -244,6 +259,17 @@ from tradFavoriteTheater ft
 where infrMember_ifmmSeq = 1
 ;
 
+-- mypage 셀렉트리스트
+select
+	mm.ifmmEmailNy
+    ,mm.ifmmSmsNy
+    ,ft.tdftSort
+    ,th.tdthBranch
+from infrMember mm
+join tradFavoriteTheater ft on ft.infrMember_ifmmSeq = mm.ifmmSeq
+join tradTheater th on th.tdthSeq = ft.tradTheater_tdthSeq
+where mm.ifmmSeq = 1
+;
 
 
 
