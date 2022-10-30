@@ -271,6 +271,8 @@ join tradTheater th on th.tdthSeq = ft.tradTheater_tdthSeq
 where mm.ifmmSeq = 1
 ;
 
+-- 영화 실관람평
+
 
 
 
