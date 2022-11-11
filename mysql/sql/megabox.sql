@@ -271,8 +271,11 @@ join tradTheater th on th.tdthSeq = ft.tradTheater_tdthSeq
 where mm.ifmmSeq = 1
 ;
 
--- 영화 실관람평
-
+-- 월별 결제
+SELECT month(`tdbkBookingDate`) AS `date`, 
+       sum(`tdbkTotalCost`)
+FROM tradBooking
+GROUP BY `date`;
 
 
 
